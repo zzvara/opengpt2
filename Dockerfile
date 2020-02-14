@@ -14,6 +14,7 @@ WORKDIR /var/www/flask_predict_api/
 COPY ./flask_predict_api.wsgi /var/www/flask_predict_api/flask_predict_api.wsgi
 COPY ./flask_demo /var/www/flask_predict_api/
 RUN pip install -r requirements.txt
+RUN python3 download_model.py 124M
 RUN python3 download_model.py 1558M
 RUN /opt/conda/bin/mod_wsgi-express install-module
 RUN mod_wsgi-express setup-server flask_predict_api.wsgi --port=8000 \
